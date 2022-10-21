@@ -38,24 +38,94 @@ public class CheckStatusUser {
 		
 	}
 	
-	public static HttpServletResponse checkGroupUser (HttpServletResponse res, String statusUser,Cookie[] cookie ) throws IOException {	
+	public static String checkGroupAdmin (String statusUser,Cookie[] cookie ) throws IOException {	
 		LoginDatabase logindatabase = new LoginDatabase();
+		String redirect = Format.LOGOUT;
 		
 		try{
 			if(!logindatabase.validateCookie(cookie) || statusUser == null){
 				throw new Exception("Exception message");
 			}
-//			if(!statusUser.equals("admin")){
-				String redirect = CheckStatusUser.IndexStatus(statusUser);
-				res.sendRedirect(redirect);
-//			}
+			if(SUPERVISOR.equals(statusUser)) {
+				redirect = Format.LOGINSUCCESS2;
+				
+			} else if(USER.equals(statusUser)) {
+				redirect = Format.LOGINSUCCESS3;
+			}
 			
 			
 		} catch(Exception e){
-			String redirect = "logout.jsp";
-			res.sendRedirect(redirect);
+			redirect = Format.LOGOUT;
+
 		}
-		return res;
+		return redirect;
+		
+	}
+	
+	public static String checkGroupSuperVisor (String statusUser,Cookie[] cookie ) throws IOException {	
+		LoginDatabase logindatabase = new LoginDatabase();
+		String redirect = Format.LOGOUT;
+		
+		try{
+			if(!logindatabase.validateCookie(cookie) || statusUser == null){
+				throw new Exception("Exception message");
+			}
+			if(USER.equals(statusUser)) {
+				redirect = Format.LOGINSUCCESS3;
+				
+			}else if(ADMIN.equals(statusUser)){
+				redirect = Format.LOGINSUCCESS;
+				
+			}
+			
+			
+		} catch(Exception e){
+			redirect = Format.LOGOUT;
+
+		}
+		return redirect;
+		
+	}
+	
+	public static String checkGroupUser(String statusUser,Cookie[] cookie ) throws IOException {	
+		LoginDatabase logindatabase = new LoginDatabase();
+		String redirect = Format.LOGOUT;
+		
+		try{
+			if(!logindatabase.validateCookie(cookie) || statusUser == null){
+				throw new Exception("Exception message");
+			}
+			if(SUPERVISOR.equals(statusUser)) {
+				redirect = Format.LOGINSUCCESS2;
+			}else if(ADMIN.equals(statusUser)){
+				redirect = Format.LOGINSUCCESS;
+			}
+			
+			
+		} catch(Exception e){
+			redirect = Format.LOGOUT;
+
+		}
+		return redirect;
+		
+	}
+	
+	public static Boolean checkStatus(String statusUser,Cookie[] cookie ) throws IOException {	
+		LoginDatabase logindatabase = new LoginDatabase();
+		Boolean redirect = false;
+		
+		try{
+			if(!logindatabase.validateCookie(cookie) || statusUser == null){
+				redirect = true;
+				throw new Exception("Exception message");		
+			}		
+			
+		} catch(Exception e){
+			
+			redirect = true;
+
+		}
+		return redirect;
 		
 	}
 	

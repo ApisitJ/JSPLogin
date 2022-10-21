@@ -2,6 +2,7 @@
 <%@page import="com.login.database.LoginDatabase"%>
 <%@page import="com.login.bean.LoginBean" %>
 <%@page import="com.login.verify.CheckStatusUser" %>
+<%@page import="com.login.bean.Format" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -18,25 +19,15 @@
 		Cookie[]cookie = request.getCookies();
 		String status = (String)request.getSession().getAttribute("status_User");
 		CheckStatusUser.setLogout(response);
-				try{
-					if(!logindatabase.validateCookie(cookie) || status == null){
-					throw new Exception("Exception message");
-			}
-					if(!status.equals("admin")){
-					String redirect = CheckStatusUser.IndexStatus(status);
-					response.sendRedirect(redirect);
+			if(!status.equals(Format.ADMIN)){
+				String redirect = CheckStatusUser.checkGroupAdmin(status,cookie);
+				response.sendRedirect(redirect);
 			}
 			
 			out.print("<h1>Login Success " + status + "</h1>"+"<br>");
 			out.print("<a href='register.jsp'>register</a>"+"</br>" );
 			out.print("<a href='changePassword.jsp'>Change Password</a>"+"</br>" );
 			out.print("<a href='logout.jsp'>logout</a>"+"</br>" );
-			
-		} catch(Exception e){
-			String redirect = "logout.jsp";
-			response.sendRedirect(redirect);
-		}
-
 		%>
 		<%--
 		if(status.equals("admin")){

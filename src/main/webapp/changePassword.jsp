@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@page import="com.login.database.LoginDatabase"%>	
+<%@page import="com.login.verify.CheckStatusUser" %>
+<%@page import="com.login.bean.Format" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,15 +13,13 @@
 		<%
 		LoginDatabase logindatabase = new LoginDatabase();
 		Cookie[]cookie = request.getCookies();
-		String status = (String)request.getSession().getAttribute("status_User");
-		try{
-			if(!logindatabase.validateCookie(cookie) || status == null){
-				throw new Exception("Exception message");
-			}
-		} catch(Exception e){
-			String redirect = "logout.jsp";
+		String status = (String)request.getSession().getAttribute(Format.STATUSUSER);
+		CheckStatusUser.setLogout(response);
+		if(CheckStatusUser.checkStatus(status, cookie)){
+			String redirect = Format.LOGOUT;
 			response.sendRedirect(redirect);
 		}
+
 
 		%>
 	<div align="center">
