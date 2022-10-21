@@ -27,7 +27,6 @@
 					response.sendRedirect(redirect);
 			}
 			
-			out.print("Success"+"<br>");
 			out.print("<h1>Login Success " + status + "</h1>"+"<br>");
 			out.print("<a href='register.jsp'>register</a>"+"</br>" );
 			out.print("<a href='changePassword.jsp'>Change Password</a>"+"</br>" );
