@@ -41,9 +41,12 @@ public class LoginServlet extends HttpServlet {
 			String code = request.getParameter(Format.AUTHENCODE);
 			session.setAttribute(Format.STACK, stack-1);
 			if(code.equals(bean.getCode())) {
-				Cookie cookie = new Cookie(Format.TRUEUSERLOGIN,bean.getGroup());
+				Cookie cookie = new Cookie(Format.TRUEUSERLOGIN,bean.getGroup() + "@" + bean.getUsername());
 				cookie.setMaxAge(60*60*24);
 				response.addCookie(cookie);
+				
+				
+				
 				if(Format.ADMIN.equals(bean.getGroup().toLowerCase())) {
 					response.sendRedirect(Format.LOGINSUCCESS);
 				} else if(Format.SUPER_VISOR.equals(bean.getGroup().toLowerCase())) {

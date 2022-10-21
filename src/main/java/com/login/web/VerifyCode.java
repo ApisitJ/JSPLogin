@@ -62,9 +62,16 @@ public class VerifyCode extends HttpServlet {
 				System.out.println(code);
 				sendVerify = true;
 			}
-//			else {
-//				sendVerify = true;
-//			}
+			else {
+				if(!logindatabase.validateCookieUser(cookie, username)) {
+					Cookie clearcookie = new Cookie(Format.TRUEUSERLOGIN,null);
+					clearcookie.setMaxAge(0);
+					response.addCookie(clearcookie);
+//					sendVerify = sm.sendEmail(loginBean);
+					System.out.println(code);
+					sendVerify = true;
+				}						
+			}
 						
 			if(!sendVerify) {
 				session.setAttribute(Format.AUTHEN, auth);

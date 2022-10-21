@@ -106,6 +106,25 @@ public class LoginDatabase {
 		return checkCookie;
 	}
 	
+	public boolean validateCookieUser(Cookie[] cookie, String user) {
+
+		Boolean checkCookie = false;
+		if(cookie != null && user != null){
+			for(Cookie tmp: cookie){
+				if(tmp.getName().equals(Format.TRUEUSERLOGIN)) {
+					String cookieName = tmp.getValue();
+					String checkName = cookieName.split("@")[1];
+					if(checkName.equals(user)){
+//						System.out.print(tmp.getName());
+						checkCookie = true;
+					}	
+				}
+			}
+		}
+		
+		return checkCookie;
+	}
+	
 	public boolean verifyUser(String username , String email) {
 		Boolean verifyEmail = false;
 		loadDriver(dbDriver);
