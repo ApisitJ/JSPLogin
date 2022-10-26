@@ -28,11 +28,9 @@ public class VerifyCode extends HttpServlet {
        
     public VerifyCode() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		String username = request.getParameter(Format.USERNAME);
 		String password = request.getParameter(Format.PASSWORD);
@@ -58,8 +56,8 @@ public class VerifyCode extends HttpServlet {
 			Cookie[]cookie = request.getCookies();
 			
 			if(!logindatabase.validateCookie(cookie)){
-//				sendVerify = sm.sendEmail(loginBean);
-				System.out.println(code);
+				sendVerify = sm.sendEmail(loginBean);
+//				System.out.println(code);
 				sendVerify = true;
 			}
 			else {
@@ -67,8 +65,8 @@ public class VerifyCode extends HttpServlet {
 					Cookie clearcookie = new Cookie(Format.TRUEUSERLOGIN,null);
 					clearcookie.setMaxAge(0);
 					response.addCookie(clearcookie);
-//					sendVerify = sm.sendEmail(loginBean);
-					System.out.println(code);
+					sendVerify = sm.sendEmail(loginBean);
+//					System.out.println(code);
 					sendVerify = true;
 				}						
 			}
@@ -76,19 +74,16 @@ public class VerifyCode extends HttpServlet {
 			if(!sendVerify) {
 				session.setAttribute(Format.AUTHEN, auth);
 				session.setAttribute(Format.STATUSUSER, checkGroup);
-				session.setAttribute(Format.STACK, 0);
 				response.sendRedirect(Format.LOGINSUCCESS);
 
 			}else {
 				session.setAttribute(Format.AUTHEN, auth);
 				session.setAttribute(Format.STATUSUSER, checkGroup);
 				session.setAttribute(Format.STACK, 3);
-//				session.setAttribute("error", "");
 				response.sendRedirect(Format.VERIFYEMAIL);
 			}
 			
 		}else {
-//			response.sendRedirect(Format.LOGOUT);
 			request.setAttribute("message", "Username or password Incorrect Please try again");
 			RequestDispatcher rd = request.getRequestDispatcher(Format.LOGIN);
 			rd.include(request, response);

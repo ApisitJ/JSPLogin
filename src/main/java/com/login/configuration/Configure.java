@@ -8,7 +8,6 @@ public class Configure {
 			
 			ResourceBundle rb = ResourceBundle.getBundle("config.config");
 			value = rb.getString(conf);
-//			System.out.println(value);
 				
 			return value;
 		}

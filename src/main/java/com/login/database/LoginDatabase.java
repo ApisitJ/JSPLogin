@@ -22,10 +22,6 @@ public class LoginDatabase {
 //	String pass = "sysadmin";
 //	Connection con = DriverManager.getConnection(url,name,pass);
 
-//	private String dbURL = "jdbc:mysql://localhost/world";
-//	private String name = "root";
-//	private String pass = "sysadmin";
-//	private String dbDriver = "com.mysql.jdbc.Driver";
 	private String dbURL = Configure.getConfig(ConfigName.DBURL);
 	private String name = Configure.getConfig(ConfigName.DBNAME);
 	private String pass = Configure.getConfig(ConfigName.DBPASSWORD);
@@ -48,7 +44,6 @@ public class LoginDatabase {
 		try {
 			Class.forName(dbDriver);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -60,7 +55,6 @@ public class LoginDatabase {
 		try {
 			con =DriverManager.getConnection(dbURL,name,pass);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return con;
@@ -68,7 +62,6 @@ public class LoginDatabase {
 	
 	public boolean validate(LoginBean loginBean) {
 		loadDriver(dbDriver);
-//		loadDriver(Configure.getConfig(ConfigName.DBDRIVER));
 		Connection con = getConnection();
 		Boolean status = false;
 		
@@ -83,7 +76,6 @@ public class LoginDatabase {
 			loginBean.setGroup(rs.getString(Format.GROUPUSER));
 			loginBean.setEmail(rs.getString(Format.EMAIL));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -97,7 +89,6 @@ public class LoginDatabase {
 		if(cookie != null){
 			for(Cookie tmp: cookie){
 				if(tmp.getName().equals(Format.TRUEUSERLOGIN)){
-//					System.out.print(tmp.getName());
 					checkCookie = true;
 				}	
 			}
@@ -115,7 +106,6 @@ public class LoginDatabase {
 					String cookieName = tmp.getValue();
 					String checkName = cookieName.split("@")[1];
 					if(checkName.equals(user)){
-//						System.out.print(tmp.getName());
 						checkCookie = true;
 					}	
 				}
@@ -138,7 +128,6 @@ public class LoginDatabase {
 			ResultSet rs = ps.executeQuery();			
 			verifyEmail = rs.next();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -158,7 +147,6 @@ public class LoginDatabase {
 			ResultSet rs = ps.executeQuery();			
 			checkUser = rs.next();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -182,7 +170,6 @@ public class LoginDatabase {
 			
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return rs;
@@ -201,7 +188,6 @@ public class LoginDatabase {
 			rs = ps.executeUpdate();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return rs;
@@ -220,7 +206,6 @@ public class LoginDatabase {
 			ResultSet rs = ps.executeQuery();			
 			password = rs.next();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -241,7 +226,6 @@ public class LoginDatabase {
 			rs = ps.executeUpdate();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return rs;

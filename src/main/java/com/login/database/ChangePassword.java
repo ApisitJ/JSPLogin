@@ -20,7 +20,6 @@ public class ChangePassword extends HttpServlet {
        
     public ChangePassword() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -58,7 +57,7 @@ public class ChangePassword extends HttpServlet {
 			}
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}	
 	}
 

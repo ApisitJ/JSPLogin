@@ -59,8 +59,6 @@ public class SendEmail {
 			
         	message.setSubject("User Email Verification");
         	message.setText("Please Verify your login code: "+ loginbean.getCode());
-			
-//        	System.out.println("send code:"+loginbean.getCode() +"  to:"+ toMail);
         	
 			Transport.send(message);
 			

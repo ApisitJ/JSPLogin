@@ -16,9 +16,6 @@ import com.login.bean.LoginBean;
 import com.login.database.LoginDatabase;
 
 
-/**
- * Servlet implementation class LoginServlet
- */
 @WebServlet("/Verifylogin")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -62,7 +59,6 @@ public class LoginServlet extends HttpServlet {
 					
 				}else {
 					request.setAttribute("message", "Wrong Code please Try Again " + stack);
-//					response.sendRedirect(Format.VERIFYEMAIL);
 					
 					RequestDispatcher rd = request.getRequestDispatcher(Format.VERIFYEMAIL);
 					rd.include(request, response);
@@ -71,7 +67,6 @@ public class LoginServlet extends HttpServlet {
 			}
 			
 		} catch (Exception e) {
-			// TODO: handle exception
 			response.sendRedirect(Format.LOGOUT);	
 		}
 
