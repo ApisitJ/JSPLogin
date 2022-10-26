@@ -17,6 +17,13 @@ public class ConfigName {
 	public static final String MAILAUTH = "mailauth";
 	public static final String MAILAUTHNAME = "mailauthname";
 	public static final String MAILTLS = "mailtls";
-	public static final String MAILTLSNAME = "mailtlsname";	
+	public static final String MAILTLSNAME = "mailtlsname";
+	
+	//timeCookie
+	public static final String HALFDAY = "halfday" ;
+	public static final String ONEDAY = "oneDay" ;
+	public static final String SEVENDAY = "sevenDay" ;
+	public static final String HALFMONTH = "halfMonth" ;
+	public static final String ONEMONTH = "oneMonth" ;
 
 }

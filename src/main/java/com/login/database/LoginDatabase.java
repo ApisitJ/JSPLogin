@@ -37,6 +37,7 @@ public class LoginDatabase {
 			+ "WHERE user_name = ?";
 	private static final String UPDATE_EMAIL = "update world.login SET email = ?"
 			+ "WHERE user_name = ?";
+	private static final String SELECT_USERNAME ="select * FROM world.login where user_name = ?";
 	
 	
 	public void loadDriver(String dbDriver) {
@@ -229,6 +230,24 @@ public class LoginDatabase {
 			e.printStackTrace();
 		}
 		return rs;
+	}
+	
+	public boolean checkUser(String username ) {
+		Boolean checkUser = false;
+		loadDriver(dbDriver);
+		Connection con = getConnection();
+		PreparedStatement ps;
+		try {
+			ps = con.prepareStatement(SELECT_USERNAME);
+			ps.setString(1, username);			
+			ResultSet rs = ps.executeQuery();			
+			checkUser = rs.next();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return checkUser;
 	}
 	
 }

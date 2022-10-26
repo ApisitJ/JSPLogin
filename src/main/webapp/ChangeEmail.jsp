@@ -1,43 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@page import="com.login.database.LoginDatabase"%>	
+<%@page import="com.login.verify.CheckStatusUser" %>
+<%@page import="com.login.bean.Format" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Change Password</title>
+<title>Change Email</title>
 </head>
 <body>
 		<%
 		LoginDatabase logindatabase = new LoginDatabase();
 		Cookie[]cookie = request.getCookies();
 		String status = (String)request.getSession().getAttribute("status_User");
-		try{
-			if(!logindatabase.validateCookie(cookie) || status == null){
-				throw new Exception("Exception message");
+		CheckStatusUser.setLogout(response);
+			if(!status.equals(Format.ADMIN)){
+				String redirect = CheckStatusUser.checkGroupAdmin(status,cookie);
+				response.sendRedirect(redirect);
 			}
-		} catch(Exception e){
-			String redirect = "logout.jsp";
-			response.sendRedirect(redirect);
-		}
 
 		%>
 	<div align="center">
-		<h1>Change Password </h1>
-		<form action="ChangePassword" method="post">
+		<h1>Change Email </h1>
+		<form action="ChangeEmail" method="post">
 			<h3 style="color: red">${message}</h3>
 			<table>
 				<tr>
-					<td>Current Password:</td>
-					<td><input type="password" name="oldPassword"></td>
+					<td>User Name:</td>
+					<td><input type="text" name="username"></td>
 				</tr>
 				<tr>
-				<td>New Password:</td>
-					<td><input type="password" name="newPassword"></td>
+					<td>Current Email:</td>
+					<td><input type="text" name="currentEmail"></td>
+				</tr>
+				<tr>
+				<td>New Email:</td>
+					<td><input type="text" name="newEmail"></td>
 				</tr>				
 				<tr>
-				<td>Confirm Password:</td>
-					<td><input type="password" name="confirmPassword"></td>
+				<td>Confirm Email:</td>
+					<td><input type="text" name="confirmEmail"></td>
 				</tr>					
 				<tr>
 					<td></td>

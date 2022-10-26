@@ -15,6 +15,9 @@ public class Format {
 	public static final String OLDPASSWORD = "oldPassword";
 	public static final String NEWPASSWORD = "newPassword";
 	public static final String CONFIRMPASSWORD = "confirmPassword";
+	public static final String CURRENTEMAIL = "currentEmail";
+	public static final String NEWEMAIL = "newEmail";
+	public static final String CONFIRMEMAIL = "confirmEmail";
 	
 	
 	//Group
@@ -35,5 +38,6 @@ public class Format {
 	public static final String LOGOUT = "logout.jsp";
 	public static final String VERIFYEMAIL = "verifyEmail.jsp";
 	public static final String CHANGEPASSWORD = "changePassword.jsp";
+	public static final String CHANGEEMAIL = "ChangeEmail.jsp";
 
 }

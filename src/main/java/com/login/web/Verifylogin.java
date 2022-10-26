@@ -13,17 +13,19 @@ import javax.servlet.http.HttpSession;
 
 import com.login.bean.Format;
 import com.login.bean.LoginBean;
+import com.login.configuration.ConfigName;
+import com.login.configuration.Configure;
 import com.login.database.LoginDatabase;
 
 
 @WebServlet("/Verifylogin")
-public class LoginServlet extends HttpServlet {
+public class Verifylogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	LoginBean loginBean = new LoginBean();
 	LoginDatabase logindatabase = new LoginDatabase();
 	
-    public LoginServlet() {
+    public Verifylogin() {
         super();
 
     }
@@ -39,7 +41,8 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute(Format.STACK, stack-1);
 			if(code.equals(bean.getCode())) {
 				Cookie cookie = new Cookie(Format.TRUEUSERLOGIN,bean.getGroup() + "@" + bean.getUsername());
-				cookie.setMaxAge(60*60*24);
+				Integer setTime = Integer.parseInt(Configure.getConfig(ConfigName.HALFDAY));
+				cookie.setMaxAge(setTime);
 				response.addCookie(cookie);
 				
 				
