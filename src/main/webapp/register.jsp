@@ -32,7 +32,10 @@
 						<h3 style="color: red">${message}</h3>
 						
 			<table>
-
+				<tr>
+					<td>ID:</td>
+					<td><input type="text" name="employeeid"></td>
+				</tr>
 				<tr>
 					<td>UserName:</td>
 					<td><input type="text" name="username"></td>
@@ -50,7 +53,7 @@
 					<td><select name="status">
 							<option value="user">User</option>
 							<option value="admin">Admin</option>
-							<option value="super visor">Super Visor</option>
+							<option value="supervisor">Super Visor</option>
 							
 					</select></td>
 				</tr>				

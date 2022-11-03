@@ -32,6 +32,7 @@ public class Register extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String id		= request.getParameter(Format.EMPID);
 		String username = request.getParameter(Format.USERNAME);
 		String password = request.getParameter(Format.PASSWORD);
 		String email    = request.getParameter(Format.EMAIL);
@@ -47,10 +48,20 @@ public class Register extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher(Format.REGISTER);
 				rd.include(request, response);
 
+			} else if(loginDatabase.checkEmpID(id)) {
+				request.setAttribute("message", "Register Not Success Because EmployeeID already used ");
+				RequestDispatcher rd = request.getRequestDispatcher(Format.REGISTER);
+				rd.include(request, response);
+
+			} else if(loginDatabase.checkEmail(email)) {
+				request.setAttribute("message", "Register Not Success Because Email already used ");
+				RequestDispatcher rd = request.getRequestDispatcher(Format.REGISTER);
+				rd.include(request, response);
+
 			} else {
 				request.setAttribute("message", "RegisterSuccess");
 				RegisBean regis = new RegisBean(username, password, email, group);
-				loginDatabase.getregisterUser(regis);
+				loginDatabase.getRegisterUser(regis);
 				response.sendRedirect(Format.LOGINSUCCESS);
 			}
 

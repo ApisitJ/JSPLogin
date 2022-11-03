@@ -13,8 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import com.login.bean.Format;
 import com.login.bean.LoginBean;
-import com.login.configuration.ConfigName;
-import com.login.configuration.Configure;
+//import com.login.configuration.ConfigName;
+//import com.login.configuration.Configure;
 import com.login.database.LoginDatabase;
 
 
@@ -42,8 +42,8 @@ public class Verifylogin extends HttpServlet {
 			session.setAttribute(Format.STACK, stack-1);
 			if(code.equals(bean.getCode())) {
 				Cookie cookie = new Cookie(Format.TRUEUSERLOGIN,bean.getGroup() + "@" + bean.getUsername());
-				Integer setTime = Integer.parseInt(Configure.getConfig(ConfigName.HALFDAY));
-				cookie.setMaxAge(setTime);
+//				Integer setTime = 60*60*20;
+				cookie.setMaxAge(60*60*20);
 				response.addCookie(cookie);
 
 

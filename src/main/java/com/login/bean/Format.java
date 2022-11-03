@@ -5,6 +5,7 @@ public class Format {
 	public static final String GROUPUSER = "group_user";
 	public static final String EMAIL = "email";
 	public static final String USERNAME = "username";
+	public static final String EMPID = "employeeid";
 	public static final String PASSWORD = "password";
 	public static final String STATUS = "status";
 	public static final String AUTHEN = "authen";
