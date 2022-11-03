@@ -1,17 +1,17 @@
 package com.login.bean;
 
 public class LoginBean {
-	
+
 	private String username;
 	private String password;
 	private String group;
 	private String code;
 	private String email;
-	
+
 	public LoginBean() {
 
 	}
-	
+
 	public LoginBean(String username, String password , String group, String code , String email) {
 		this.username = username;
 		this.password = password;
@@ -19,8 +19,8 @@ public class LoginBean {
 		this.code = code;
 		this.email = email;
 	}
-	
-	
+
+
 	public String getEmail() {
 		return email;
 	}
@@ -51,6 +51,6 @@ public class LoginBean {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 
 }

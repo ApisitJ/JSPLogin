@@ -15,7 +15,7 @@
 		<%
 		LoginDatabase logindatabase = new LoginDatabase();
 		Cookie[]cookie = request.getCookies();
-		String status = (String)request.getSession().getAttribute("status_User");
+		String status = (String)request.getSession().getAttribute(Format.STATUSUSER);
 		CheckStatusUser.setLogout(response);
 		if(!status.equals(Format.USER)){
 			String redirect = CheckStatusUser.checkGroupUser(status,cookie);
@@ -24,7 +24,7 @@
 
 
 			out.print("Success"+"<br>");
-			out.print("<h1>Login Success " + status + "</h1>"+"<br>");
+			out.print("<h1>Login Success Welcome" + status + "</h1>"+"<br>");
 			out.print("<h1>Now you Status Readonly please contact for upgrade your more for status</h1>"+"<br>");
 			out.print("<a href='changePassword.jsp'>Change Password</a>"+"</br>" );
 			out.print("<a href='logout.jsp'>logout</a>"+"</br>" );

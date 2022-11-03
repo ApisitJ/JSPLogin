@@ -22,39 +22,40 @@ import com.login.database.SendEmail;
 @WebServlet("/VerifyCode")
 public class VerifyCode extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	LoginBean loginBean = new LoginBean();
 	LoginDatabase logindatabase = new LoginDatabase();
-       
+
     public VerifyCode() {
         super();
     }
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String username = request.getParameter(Format.USERNAME);
 		String password = request.getParameter(Format.PASSWORD);
-		
+
 		loginBean.setUsername(username);
 		loginBean.setPassword(password);
 		session.setAttribute(Format.STATUSUSER, "");
 		session.setAttribute(Format.USERNAME, username);
-		
-		
+
+
 		if(!username.isEmpty() && !password.isEmpty() && logindatabase.validate(loginBean)) {
-			
+
 			SendEmail sm = new SendEmail();
 			String code = sm.getRandom();
-			
+
 			loginBean.setCode(code);
 			String checkGroup = loginBean.getGroup();
 			LoginBean auth = new LoginBean(username, password, checkGroup, code, loginBean.getEmail());
-			
+
 			boolean sendVerify = false;
-			
+
 			LoginDatabase logindatabase = new LoginDatabase();
 			Cookie[]cookie = request.getCookies();
-			
+
 			if(!logindatabase.validateCookie(cookie)){
 				sendVerify = sm.sendEmail(loginBean);
 //				System.out.println(code);
@@ -68,9 +69,9 @@ public class VerifyCode extends HttpServlet {
 					sendVerify = sm.sendEmail(loginBean);
 //					System.out.println(code);
 					sendVerify = true;
-				}						
+				}
 			}
-						
+
 			if(!sendVerify) {
 				session.setAttribute(Format.AUTHEN, auth);
 				session.setAttribute(Format.STATUSUSER, checkGroup);
@@ -82,7 +83,7 @@ public class VerifyCode extends HttpServlet {
 				session.setAttribute(Format.STACK, 3);
 				response.sendRedirect(Format.VERIFYEMAIL);
 			}
-			
+
 		}else {
 			request.setAttribute("message", "Username or password Incorrect Please try again");
 			RequestDispatcher rd = request.getRequestDispatcher(Format.LOGIN);

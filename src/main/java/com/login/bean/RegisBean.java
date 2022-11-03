@@ -1,23 +1,23 @@
 package com.login.bean;
 
 public class RegisBean {
-	
+
 	private String username;
 	private String password;
 	private String email;
 	private String group;
-	
+
 	public RegisBean() {
-		
+
 	}
-	
+
 	public RegisBean(String username, String password, String email, String group) {
 		this.username = username;
 		this.password = password;
 		this.email	  = email;
 		this.group    = group;
 	}
-	
+
 	public String getUsername() {
 		return username;
 	}

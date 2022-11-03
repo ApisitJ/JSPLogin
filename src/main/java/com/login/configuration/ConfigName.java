@@ -6,7 +6,8 @@ public class ConfigName {
 	public static final String DBNAME = "dbName";
 	public static final String DBPASSWORD = "dbPassword";
 	public static final String DBDRIVER = "dbDriver";
-	
+	public static final String DBTABLEUSERID = "dbTableUserID";
+
 	//email
 	public static final String MAILSEND = "mailsend";
 	public static final String PASSEMAIL = "passEmail";
@@ -18,7 +19,7 @@ public class ConfigName {
 	public static final String MAILAUTHNAME = "mailauthname";
 	public static final String MAILTLS = "mailtls";
 	public static final String MAILTLSNAME = "mailtlsname";
-	
+
 	//timeCookie
 	public static final String HALFDAY = "halfday" ;
 	public static final String ONEDAY = "oneDay" ;

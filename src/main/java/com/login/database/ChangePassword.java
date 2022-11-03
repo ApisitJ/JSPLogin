@@ -15,18 +15,20 @@ import com.login.bean.Format;
 @WebServlet("/ChangePassword")
 public class ChangePassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	LoginDatabase loginDatabase = new LoginDatabase();
-       
+
     public ChangePassword() {
         super();
     }
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
@@ -36,29 +38,29 @@ public class ChangePassword extends HttpServlet {
 		String confirmPassword = request.getParameter(Format.CONFIRMPASSWORD);
 		try {
 			if(oldPassword.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
-				request.setAttribute("message", "Incorrect Some Value is Invalid");				
+				request.setAttribute("message", "Incorrect Some Value is Invalid");
 				RequestDispatcher rd = request.getRequestDispatcher(Format.CHANGEPASSWORD);
 				rd.include(request, response);
 			}else if(!newPassword.equals(confirmPassword)) {
-				request.setAttribute("message", "New Password and Confirm Password not Macth!!!");				
+				request.setAttribute("message", "New Password and Confirm Password not Macth!!!");
 				RequestDispatcher rd = request.getRequestDispatcher(Format.CHANGEPASSWORD);
 				rd.include(request, response);
-				
+
 			}else if(!loginDatabase.checkOLDPassword(username, oldPassword)) {
-				request.setAttribute("message", "Current Password not True Please Try Again");				
+				request.setAttribute("message", "Current Password not True Please Try Again");
 				RequestDispatcher rd = request.getRequestDispatcher(Format.CHANGEPASSWORD);
 				rd.include(request, response);
-				
+
 			}else{
-				request.setAttribute("message", "RegisterSuccess");	
+				request.setAttribute("message", "RegisterSuccess");
 				loginDatabase.updatePassword(username, newPassword);
 				response.sendRedirect(Format.LOGINSUCCESS);
-				
+
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
 	}
 
 }

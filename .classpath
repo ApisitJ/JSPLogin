@@ -13,7 +13,9 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Users/Apisi52/Downloads/javax.mail.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Apisi52/Downloads/activation-jaf1.1.1.jar"/>
+	<classpathentry kind="lib" path="ojdbc8.jar"/>
+	<classpathentry kind="lib" path="orai18n-12.1.0.2.0.jar"/>
+	<classpathentry kind="lib" path="activation-jaf1.1.1.jar"/>
+	<classpathentry kind="lib" path="javax.mail.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

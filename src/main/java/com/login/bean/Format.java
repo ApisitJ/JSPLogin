@@ -18,17 +18,17 @@ public class Format {
 	public static final String CURRENTEMAIL = "currentEmail";
 	public static final String NEWEMAIL = "newEmail";
 	public static final String CONFIRMEMAIL = "confirmEmail";
-	
-	
+
+
 	//Group
 	public static final String ADMIN = "admin";
 	public static final String SUPER_VISOR = "supervisor" ;
 	public static final String USER = "user";
 
-	
+
 	//Cookie
 	public static final String TRUEUSERLOGIN = "trueuserlogin";
-	
+
 	//State
 	public static final String LOGIN = "login.jsp";
 	public static final String REGISTER = "register.jsp";

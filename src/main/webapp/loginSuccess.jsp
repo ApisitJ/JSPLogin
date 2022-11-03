@@ -17,16 +17,17 @@
 		
 		LoginDatabase logindatabase = new LoginDatabase();
 		Cookie[]cookie = request.getCookies();
-		String status = (String)request.getSession().getAttribute("status_User");
+		String status = (String)request.getSession().getAttribute(Format.STATUSUSER);
 		CheckStatusUser.setLogout(response);
 			if(!status.equals(Format.ADMIN)){
 				String redirect = CheckStatusUser.checkGroupAdmin(status,cookie);
 				response.sendRedirect(redirect);
 			}
 			
-			out.print("<h1>Login Success " + status + "</h1>"+"<br>");
+			out.print("<h1>Login Success Welcome" + status + "</h1>"+"<br>");
 			out.print("<a href='register.jsp'>register</a>"+"</br>" );
 			out.print("<a href='changePassword.jsp'>Change Password</a>"+"</br>" );
+			out.print("<a href='changeEmail.jsp'>Change Email</a>"+"</br>" );
 			out.print("<a href='logout.jsp'>logout</a>"+"</br>" );
 		%>
 		<%--
