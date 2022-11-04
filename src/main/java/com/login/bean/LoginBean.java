@@ -19,6 +19,11 @@ public class LoginBean {
 		this.code = code;
 		this.email = email;
 	}
+	
+	public LoginBean(String code, String email) {
+		this.code = code;
+		this.email = email;
+	}
 
 
 	public String getEmail() {

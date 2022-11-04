@@ -69,5 +69,49 @@ public class SendEmail {
         }
 		return success;
 	}
+	
+	public boolean sendEmailForgotPass(LoginBean loginbean) {
+		boolean success = false;
+		String toMail = loginbean.getEmail();
+		String fromMail = Configure.getConfig(ConfigName.MAILSENDFORGOT);
+		String password = Configure.getConfig(ConfigName.PASSEMAILFORGOT);
+//		String fromMail = "sendemail.01java@gmail.com";
+//		String password = "mxqicxbgzmwhatpt";
+
+	    Properties prop = new Properties();
+
+//	    prop.put("mail.smtp.host", "smtp.gmail.com");
+//	    prop.put("mail.smtp.port", "587");
+//	    prop.put("mail.smtp.auth", "true");
+//	    prop.put("mail.smtp.starttls.enable", "true");
+	    prop.put(Configure.getConfig(ConfigName.MAILHOST), Configure.getConfig(ConfigName.MAILHOSTNAME));
+	    prop.put(Configure.getConfig(ConfigName.MAILPORT), Configure.getConfig(ConfigName.MAILPORTNAME));
+	    prop.put(Configure.getConfig(ConfigName.MAILAUTH), Configure.getConfig(ConfigName.MAILAUTHNAME));
+	    prop.put(Configure.getConfig(ConfigName.MAILTLS), Configure.getConfig(ConfigName.MAILTLSNAME));
+	    Session session = Session.getInstance(prop,
+	            new Authenticator() {
+	                @Override
+					protected PasswordAuthentication getPasswordAuthentication() {
+	                    return new PasswordAuthentication(fromMail, password);
+	                }
+	            });
+
+        try {
+        	Message message = new MimeMessage(session);
+
+        	message.setFrom(new InternetAddress(fromMail));
+        	message.setRecipient( Message.RecipientType.TO, new InternetAddress(toMail));
+
+        	message.setSubject("User Email Verification");
+        	message.setText("Please Verify your login code: "+ loginbean.getCode());
+
+			Transport.send(message);
+
+			success = true;
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+		return success;
+	}
 
 }

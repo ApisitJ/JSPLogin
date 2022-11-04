@@ -51,6 +51,8 @@ public class LoginDatabase {
 			+ "values( ?, ?, ?, ?)";
 	private static final String UPDATE_PASSWORD = "update " + Configure.getConfig(ConfigName.DBTABLEUSERID) + " SET USER_PASSWORD = ?"
 			+ "WHERE USER_NAME = ?";
+	private static final String UPDATE_PASSWORD_FORGOT = "update " + Configure.getConfig(ConfigName.DBTABLEUSERID) + " SET USER_PASSWORD = ?"
+			+ "WHERE EMAIL = ?";
 	private static final String UPDATE_EMAIL = "update " + Configure.getConfig(ConfigName.DBTABLEUSERID) + " SET EMAIL = ?"
 			+ "WHERE USER_NAME = ?";
 	private static final String SELECT_USERNAME ="select * FROM " + Configure.getConfig(ConfigName.DBTABLEUSERID) + " where USER_NAME = ?";
@@ -301,6 +303,24 @@ public class LoginDatabase {
 
 
 		return checkUser;
+	}
+	
+	public int updatePasswordForgot(String password , String email) {
+		int rs = 0;
+		loadDriver(dbDriver);
+		Connection con = getConnection();
+		PreparedStatement ps;
+		try {
+			ps = con.prepareStatement(UPDATE_PASSWORD_FORGOT);
+			ps.setString(1, convertData.EncodePassword(password));
+			ps.setString(2, email);
+
+			rs = ps.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
 	}
 
 }

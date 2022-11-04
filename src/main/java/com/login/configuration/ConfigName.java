@@ -11,6 +11,8 @@ public class ConfigName {
 	//email
 	public static final String MAILSEND = "mailsend";
 	public static final String PASSEMAIL = "passEmail";
+	public static final String MAILSENDFORGOT = "mailsendForgot";
+	public static final String PASSEMAILFORGOT = "passEmailForgot";
 	public static final String MAILHOST = "mailhost";
 	public static final String MAILHOSTNAME = "mailhostname";
 	public static final String MAILPORT = "mailport";

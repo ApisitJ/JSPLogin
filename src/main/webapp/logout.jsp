@@ -5,6 +5,7 @@
 		clearcookie.setMaxAge(0);
 		response.addCookie(clearcookie);
 		session.removeAttribute("stack");
+		session.removeAttribute("authen");
 		session.invalidate();
 		
 		//session.removeAttribute("username");

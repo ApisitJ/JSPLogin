@@ -26,6 +26,7 @@
 				<tr>
 					<td></td>
 					<td><input type="submit" value="Login"></td>
+					<td><a href='forgotPassword.jsp'>Forgot Password ?</a></td>
 				</tr>
 			</table>
 		</form>
