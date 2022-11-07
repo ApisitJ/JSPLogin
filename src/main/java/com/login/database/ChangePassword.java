@@ -32,7 +32,7 @@ public class ChangePassword extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		String username = (String) session.getAttribute(Format.USERNAME);
+		String username = (String) session.getAttribute(Format.USERNAME_LOWER);
 		String oldPassword = request.getParameter(Format.OLDPASSWORD);
 		String newPassword = request.getParameter(Format.NEWPASSWORD);
 		String confirmPassword = request.getParameter(Format.CONFIRMPASSWORD);

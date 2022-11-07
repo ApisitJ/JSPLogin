@@ -40,7 +40,7 @@ public class LoginDatabase {
 //	private static final String UPDATE_EMAIL = "update world.login SET email = ?"
 //			+ "WHERE user_name = ?";
 //	private static final String SELECT_USERNAME ="select * FROM world.login where user_name = ?";
-	
+
 	private static final String SELECT_USERNAME_PASSWORD = "SELECT * FROM " + Configure.getConfig(ConfigName.DBTABLEUSERID) + " where USER_NAME = ? and USER_PASSWORD = ?";
 	private static final String SELECT_USERNAME_EMAIL = "SELECT * FROM " + Configure.getConfig(ConfigName.DBTABLEUSERID) + " where USER_NAME = ? and EMAIL = ?";
 	private static final String SELECT_USERNAME_CHECK_REGISTER = "SELECT USER_NAME FROM " + Configure.getConfig(ConfigName.DBTABLEUSERID) + " where USER_NAME = ?";
@@ -59,10 +59,13 @@ public class LoginDatabase {
 
 	CovertData convertData = new CovertData();
 
+
+
 	public void loadDriver(String dbDriver) {
 
 		try {
 			Class.forName(dbDriver);
+			System.out.println("Connect Driver Success");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -93,8 +96,8 @@ public class LoginDatabase {
 
 			ResultSet rs = ps.executeQuery();
 			status = rs.next();
-			loginBean.setGroup(rs.getString(Format.GROUPUSER));
-			loginBean.setEmail(rs.getString(Format.EMAIL));
+			loginBean.setGroup(rs.getString(Format.GROUPUSER_UPPER));
+			loginBean.setEmail(rs.getString(Format.EMAIL_UPPER));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -173,7 +176,7 @@ public class LoginDatabase {
 
 		return checkUser;
 	}
-	
+
 	public boolean checkEmpID(String id ) {
 		Boolean checkUser = false;
 		loadDriver(dbDriver);
@@ -191,7 +194,7 @@ public class LoginDatabase {
 
 		return checkUser;
 	}
-	
+
 	public boolean checkEmail(String email ) {
 		Boolean checkUser = false;
 		loadDriver(dbDriver);
@@ -304,7 +307,7 @@ public class LoginDatabase {
 
 		return checkUser;
 	}
-	
+
 	public int updatePasswordForgot(String password , String email) {
 		int rs = 0;
 		loadDriver(dbDriver);
@@ -321,6 +324,30 @@ public class LoginDatabase {
 			e.printStackTrace();
 		}
 		return rs;
+	}
+
+	public boolean test(String password , String email) {
+		boolean verifyEmail = false;
+		loadDriver(dbDriver);
+//		Connection con = Connect.ConnectDBSec();
+
+
+		Connection con = getConnection();
+		System.out.println("Connection Success");
+		PreparedStatement ps = null;
+		try {
+			String sql = "SELECT * FROM ITO_SS.APP4_USER_LOGIN";
+			ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			verifyEmail = rs.next();
+			while(rs.next()) {
+				System.out.print(rs.getString("ACCOUNT_ID"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return verifyEmail;
 	}
 
 }

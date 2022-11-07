@@ -33,13 +33,13 @@ public class VerifyCode extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String username = request.getParameter(Format.USERNAME);
-		String password = request.getParameter(Format.PASSWORD);
+		String username = request.getParameter(Format.USERNAME_LOWER);
+		String password = request.getParameter(Format.PASSWORD_LOWER);
 
 		loginBean.setUsername(username);
 		loginBean.setPassword(password);
 		session.setAttribute(Format.STATUSUSER, "");
-		session.setAttribute(Format.USERNAME, username);
+		session.setAttribute(Format.USERNAME_LOWER, username);
 
 
 		if(!username.isEmpty() && !password.isEmpty() && logindatabase.validate(loginBean)) {
@@ -57,8 +57,8 @@ public class VerifyCode extends HttpServlet {
 			Cookie[]cookie = request.getCookies();
 
 			if(!logindatabase.validateCookie(cookie)){
-				sendVerify = sm.sendEmail(loginBean);
-//				System.out.println(code);
+//				sendVerify = sm.sendEmail(loginBean);
+				System.out.println(code);
 				sendVerify = true;
 			}
 			else {

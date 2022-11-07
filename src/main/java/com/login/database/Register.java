@@ -32,10 +32,10 @@ public class Register extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id		= request.getParameter(Format.EMPID);
-		String username = request.getParameter(Format.USERNAME);
-		String password = request.getParameter(Format.PASSWORD);
-		String email    = request.getParameter(Format.EMAIL);
+		String id		= request.getParameter(Format.EMPID_LOWER);
+		String username = request.getParameter(Format.USERNAME_LOWER);
+		String password = request.getParameter(Format.PASSWORD_LOWER);
+		String email    = request.getParameter(Format.EMAIL_LOWER);
 		String group	= request.getParameter(Format.STATUS);
 
 		try {

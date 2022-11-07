@@ -47,8 +47,9 @@ public class SendMailForgot extends HttpServlet {
 		}else {
 			String code = sm.getRandom();
 			LoginBean auth = new LoginBean(code, email);
+			System.out.println(code);
 //			sendemail.sendEmailForgotPass(auth);
-			sendemail.sendEmail(auth);
+//			sendemail.sendEmail(auth);
 			session.setAttribute(Format.STACK, 3);
 			session.setAttribute(Format.AUTHEN, auth);
 			session.setAttribute(Format.CONFIRMFORGOT, email);

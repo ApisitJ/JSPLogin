@@ -2,11 +2,16 @@ package com.login.bean;
 
 public class Format {
 	//parameter
-	public static final String GROUPUSER = "group_user";
-	public static final String EMAIL = "email";
-	public static final String USERNAME = "username";
-	public static final String EMPID = "employeeid";
-	public static final String PASSWORD = "password";
+	public static final String GROUPUSER_LOWER = "group_user";
+	public static final String GROUPUSER_UPPER = "GROUP_USER";
+	public static final String EMAIL_LOWER = "email";
+	public static final String EMAIL_UPPER = "EMAIL";
+	public static final String USERNAME_LOWER = "username";
+	public static final String USERNAME_UPPER = "USERNAME";
+	public static final String EMPID_LOWER = "employee_id";
+	public static final String EMPID_UPPER = "EMPLOYEE_ID";
+	public static final String PASSWORD_LOWER = "password";
+	public static final String PASSWORD_UPPER = "USER_PASSWORD";
 	public static final String STATUS = "status";
 	public static final String AUTHEN = "authen";
 	public static final String STACK = "stack";

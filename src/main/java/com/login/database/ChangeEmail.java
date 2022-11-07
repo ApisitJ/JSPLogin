@@ -29,7 +29,7 @@ public class ChangeEmail extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username = request.getParameter(Format.USERNAME);
+		String username = request.getParameter(Format.USERNAME_LOWER);
 		String currentEmail = request.getParameter(Format.CURRENTEMAIL);
 		String newEmail = request.getParameter(Format.NEWEMAIL);
 		String confirmEmail = request.getParameter(Format.CONFIRMEMAIL);
