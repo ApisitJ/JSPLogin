@@ -47,7 +47,7 @@ public class Format {
 	public static final String CHANGEPASSWORD = "changePassword.jsp";
 	public static final String CHANGEEMAIL = "ChangeEmail.jsp";
 	public static final String FORGOTPASSWORD = "forgotPassword.jsp";
-	public static final String CHANGEFORGOTPASSWORD = "newPassword.jsp";
+	public static final String CHANGEFORGOTPASSWORD = "newPasswordForgot.jsp";
 	public static final String CHANGEFORGOT = "verifyForgot.jsp";
 
 }

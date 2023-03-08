@@ -19,7 +19,7 @@ public class VerifyForgot extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	LoginBean loginBean = new LoginBean();
-	LoginDatabase logindatabase = new LoginDatabase();
+	
 	
     public VerifyForgot() {
         super();
